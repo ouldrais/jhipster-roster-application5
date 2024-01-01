@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20240101050821"
+  },
+  "applications": "*",
+  "entityTableName": "department",
+  "fields": [
+    {
+      "fieldName": "key",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "team",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Department",
+  "relationships": [],
+  "searchEngine": "no"
+}

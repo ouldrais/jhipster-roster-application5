@@ -1,0 +1,114 @@
+
+entity Team {
+	key Long
+}
+
+entity TeamPlan {
+	availability Boolean
+}
+
+entity Resource {
+	key Long
+	firstName String
+	lastName String
+	teamRole String
+	exchangeAllowed Boolean
+}
+
+entity ResourcePlan {
+	availability Boolean
+}
+
+entity ResourceTraining {
+	status String
+	level String
+	trainer String
+	activeFrom Instant
+	activeto Instant
+
+}
+
+entity Training {
+	key Long
+	description String
+}
+
+entity PositionRequirement {
+	mandatoty String
+}
+
+entity Position {
+	key Long
+	leadership String
+}
+
+entity Department {
+	key Long
+	team String
+}
+
+entity Shift {
+	key Long
+	shiftStart Instant
+	shiftEnd Instant
+	type String
+}
+
+entity ShiftDemand {
+	count Long
+}
+
+entity ShiftTemplate {
+	key Long
+	shiftStart Instant
+	shiftEnd Instant
+	type String
+}
+
+relationship ManyToOne {
+	Resource{team(id)} to Team
+}
+
+relationship ManyToOne {
+	ResourceTraining{resource(id)} to Resource
+}
+
+relationship ManyToOne {
+	ResourcePlan{resource(id)} to Resource
+}
+
+relationship ManyToOne {
+	PositionRequirement {training(id)} to Training
+}
+
+relationship ManyToOne {
+	PositionRequirement{position(id)} to Position
+}
+
+relationship ManyToOne {
+	Position{department(id)} to Department
+}
+
+relationship ManyToOne {
+	TeamPlan{team(id)} to Team
+}
+relationship ManyToOne {
+	TeamPlan{Shift(id)} to Shift
+}
+relationship ManyToOne {
+	ShiftDemand{shift(key)} to Shift
+}
+relationship ManyToOne {
+	ShiftDemand{Department(id)} to Department
+}
+relationship ManyToOne {
+	ResourcePlan{shift(id)} to Shift
+}
+
+relationship ManyToOne {
+	ResourcePlan{position(id)} to Position
+}
+
+relationship ManyToOne {
+	ResourceTraining{training(id)} to Training
+}
